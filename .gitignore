@@ -1,6 +1,5 @@
-current/
 current/*
-import/pending/
 import/pending/*
-import/processed/
 import/processed/*
+.idea/
+.idea/*
