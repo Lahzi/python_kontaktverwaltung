@@ -22,34 +22,37 @@ def importCSV () :
     files = [f for f in listdir(filePath) if isfile(join(filePath, f))]
 
     for file in files:
-        with open((filePath + file), newline='') as f:
-            reader = csv.reader(f)
-            data = list(reader)
-            headers = data[0][0].split(';')
-            mode = 1
 
-            while mode != "0":
-                print("aktuelle Datei: " + file)
-                print("Menü:")
-                print("1: Zeile hinzufügen")
-                print("0: Speichern und beenden")
+        if ".csv" in file :
 
-                mode = input("Was möchten Sie tun ? ")
+            with open((filePath + file), newline='') as f:
+                reader = csv.reader(f)
+                data = list(reader)
+                headers = data[0][0].split(';')
+                mode = 1
 
-                if mode == "1" :
-                    newData = createRow(headers)
-                    data.append(newData)
+                while mode != "0":
+                    print("aktuelle Datei: " + file)
+                    print("Menü:")
+                    print("1: Zeile hinzufügen")
+                    print("0: Speichern und beenden")
 
-                if mode == "0" :
-                    saveF = open(fileSavePath + file, 'w')
-                    writer = csv.writer(saveF, delimiter=';')
-                    for row in data :
-                        writer.writerow(row)
+                    mode = input("Was möchten Sie tun ? ")
+
+                    if mode == "1" :
+                        newData = createRow(headers)
+                        data.append(newData)
+
+                    if mode == "0" :
+                        saveF = open(fileSavePath + file, 'w')
+                        writer = csv.writer(saveF, delimiter=';')
+                        for row in data :
+                            writer.writerow(row)
+                            saveF.flush()
+
                         saveF.flush()
-
-                    saveF.flush()
-                    saveF.close()
-                    os.remove(filePath + file)
+                        saveF.close()
+                        os.remove(filePath + file)
 
 
 
