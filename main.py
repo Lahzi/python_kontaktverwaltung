@@ -1,6 +1,5 @@
 import csv
 import os
-import json
 from os import listdir
 from os.path import isfile, join
 
@@ -10,7 +9,6 @@ currentFileName = 'data.json'
 
 def createRow (columnHeaders) :
     data = []
-    amountOfColumn = len(columnHeaders)
 
     for column in columnHeaders :
         value = input("Bitte geben Sie den Wert für die Spalte " + column + " ein: ")
